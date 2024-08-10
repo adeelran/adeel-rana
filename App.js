@@ -1,18 +1,23 @@
-import { StyleSheet, Text, View } from 'react-native'
+
 import React from 'react'
-import Main from './components/Main'
-import Rana from './adeel/Rana'
-import Numbermain from './pakistan/Numbermain'
-
-
+import { Provider } from 'react-redux'
+import Store from './contact App/Reduxs/Store'
+import AppNavigator from './contact App/Navigations/AppNavigation'
+import persistStore from 'redux-persist/es/persistStore'
+import { PersistGate } from 'redux-persist/integration/react'
+let persistor=persistStore(Store)
 const App = () => {
   return (
-    <View style={{flex:1}}>
-    <Numbermain/>
-    </View>
+    <Provider store={Store}>
+      <PersistGate persistor={persistor} >
+      <AppNavigator/>
+      
+      </PersistGate>
+  
+   </Provider>
   )
 }
 
 export default App
 
-const styles = StyleSheet.create({})
+
